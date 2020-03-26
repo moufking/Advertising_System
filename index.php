@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$tab = ['Mon exemple de titre 1','Mon exemple de titre 2','Mon exemple de titre 4', 'Mon exemple de titre 4',
+$tab = ['Mon exemple de titre 1','Mon exemple de titre 2','Mon exemple de titre 3', 'Mon exemple de titre 4',
         'Mon exemple de titre 5'];
 
 $valeur  =rand(0,4);
 session_start();
+    $ancien_valeur_publicitaire = $_SESSION['valeur_publicitaire'];
+    $ancien_valeur = $_SESSION['valeur'];
 
-$valeur_publicitaire = rand(0,2);
-    $_SESSION['valeur_publicitaire']= $valeur_publicitaire;
-    do {
-        $valeur_publicitaire  =rand(0,2);
-    }while($_SESSION['valeur_publicitaire']== $valeur_publicitaire);
 
-$_SESSION['valeur']=$valeur;
-        do {
-            $valeur  =rand(0,4);
-        }while($_SESSION['valeur']==$valeur);
+if(!isset($_GET['tpl']))
+{
+    while (true) {
+        $valeur_publicitaire = rand(0, 2);
+
+        if ($_SESSION['valeur_publicitaire'] != $valeur_publicitaire) {
+            $_SESSION['valeur_publicitaire'] = $valeur_publicitaire;
+            break;
+        }
+    };
+}
+
+    if(!isset($_GET['titre'])) {
+        while (true) {
+            $valeur = rand(0, 4);
+
+            if ($_SESSION['valeur'] != $valeur) {
+                $_SESSION['valeur'] = $valeur;
+                break;
+            }
+        };
+    }
+    if(isset($_GET['tpl'] )) {  $valeur_publicitaire =$_GET['tpl']; }
+    if(isset($_GET['titre'] )) { $valeur= $_GET['titre']; }
 ?>
 <head>
 
@@ -80,8 +97,9 @@ $_SESSION['valeur']=$valeur;
 
           <!-- Blog Post -->
         <div class="card mb-4">
-            <?php if($valeur_publicitaire ==0) {?>
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <?php
+                if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==0 || $valeur_publicitaire ==0) {?>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert" id="list-example">
                 <h4 class="alert-heading">Annonce publicitaire 1!</h4>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -90,13 +108,17 @@ $_SESSION['valeur']=$valeur;
                 <hr>
                 <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
             </div>
+
             <?php } ?>
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title"><?= $tab[$valeur] ?></h2>
-              <?php if($valeur_publicitaire ==1) { ?>
-              <div class="alert alert-primary" role="alert">
+              <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1) { ?>
+              <div class="alert alert-primary alert-dismissible fade show " role="alert">
                   <h4 class="alert-heading">Annonce publicitaire 2!</h4>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
                   <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
                   <hr>
                   <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
@@ -112,9 +134,10 @@ $_SESSION['valeur']=$valeur;
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
-            <a class="page-link" href="/startbootstrap-blog-home-gh-pages/">&larr; Older</a>
+
+              <a class="page-link" href="/startbootstrap-blog-home-gh-pages?tpl=<?= $ancien_valeur_publicitaire?>&titre=<?=$ancien_valeur ?>">&larr; Older</a>
           </li>
-          <li class="page-item disabled">
+          <li class="page-item">
             <a class="page-link" href="/startbootstrap-blog-home-gh-pages/">Newer &rarr;</a>
           </li>
         </ul>
@@ -130,9 +153,9 @@ $_SESSION['valeur']=$valeur;
                   ?>
               </div>
           </div>
-          <div class="card my-4">
-              <?php if($valeur_publicitaire ==0) { ?>
-              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <div class="card my-4 ">
+              <?php if(!empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==0 || $valeur_publicitaire ==0) { ?>
+              <div class="alert alert-primary alert-dismissible fade show " role="alert">
                   <h4 class="alert-heading">Annonce publicitaire 1!</h4>
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -153,7 +176,7 @@ $_SESSION['valeur']=$valeur;
 
         <!-- Categories Widget -->
         <div class="card my-4">
-            <?php if($valeur_publicitaire ==2) { ?>
+            <?php if(!empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==2 ||$valeur_publicitaire ==2) { ?>
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
                 <h4 class="alert-heading">Annonce publicitaire 3!</h4>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
