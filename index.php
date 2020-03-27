@@ -88,7 +88,7 @@ if(!isset($_GET['tpl']))
     <div class="row">
 
       <!-- Blog Entries Column -->
-      <div class="col-md-10">
+      <div class="col-md-12">
     <!--
         <h1 class="my-4">Page Heading
           <small>Secondary Text</small>
@@ -112,25 +112,51 @@ if(!isset($_GET['tpl']))
 
             <?php } ?>
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title"><?= $tab[$valeur] ?></h2>
-              <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1) { ?>
-              <div class="alert alert-primary alert-dismissible fade show " role="alert">
-                  <h4 class="alert-heading">Annonce publicitaire 2!</h4>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-                  <hr>
-                  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-              </div>
-              <?php } ?>
-            <p class="card-text">
-                Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour.
-                On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).</p>
-          </div>
+
+                  <div class="card-body">
+                    <h2 class="card-title"><?= $tab[$valeur] ?></h2>
+                      <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1) { ?>
+                      <div class="alert alert-primary alert-dismissible fade show " role="alert" id="pub3">
+                          <h4 class="alert-heading">Annonce publicitaire 2!</h4>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                          <hr>
+                          <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                      </div>
+                      <?php } ?>
+                      <div class="row">
+                          <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1) { ?>
+                          <div class="col-lg-12">
+                              <?php }else { ?>
+                          <div class="col-lg-7">
+                              <?php } ?>
+                            <p class="card-text">
+                                Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour.
+                                On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).
+                            </p>
+                      </div>
+                              <?php if(!empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==2 ||$valeur_publicitaire ==2) { ?>
+                              <div class="col-lg-5">
+                              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                  <h4 class="alert-heading">Annonce publicitaire 3!</h4>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                                  <hr>
+                                  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                              </div>
+
+                      </div>
+                              <?php } ?>
+                      </div>
+                  </div>
+
 
         </div>
+
 
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
@@ -174,28 +200,7 @@ if(!isset($_GET['tpl']))
       </div>
 
       <!-- Sidebar Widgets Column -->
-      <div class="col-md-2">
 
-        <!-- Search Widget -->
-
-
-        <!-- Categories Widget -->
-        <div class="card my-4">
-            <?php if(!empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==2 ||$valeur_publicitaire ==2) { ?>
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                <h4 class="alert-heading">Annonce publicitaire 3!</h4>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-                <hr>
-                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-            </div>
-            <?php } ?>
-        </div>
-
-
-      </div>
 
     </div>
     <!-- /.row -->
@@ -235,10 +240,6 @@ if(!isset($_GET['tpl']))
             pub2.show();
             pub1.hide();
             stop()
-
-
-            //console.log(windowScroll > lastScrollOffset);
-            //console.log(vwindow.scrollTop());
 
         }else{
             //console.log(' pas cacher');
