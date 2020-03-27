@@ -130,7 +130,7 @@ if(!isset($_GET['tpl']))
                           <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1 || $valeur_publicitaire ==0) { ?>
                           <div class="col-lg-12">
                               <?php }else { ?>
-                          <div class="col-lg-7">
+                          <div class="col-lg-7" id="paragraphe">
                               <?php } ?>
                             <p class="card-text">
                                 Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour.
@@ -231,12 +231,13 @@ if(!isset($_GET['tpl']))
     var vwindow = $(window);
 
     var lastScrollTop = 0;
+
     // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
     window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
         var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
         if (st > lastScrollTop){
             console.log('Vers le bas');
-            if(st>117 && st<980)
+            if(st>=0 && st<980)
             {
                 pub4.show()
             }else
@@ -244,7 +245,7 @@ if(!isset($_GET['tpl']))
                 pub4.hide()
             }
 
-            if(st>142 && st<661)
+            if(st>=0 && st<624)
             {
                 pub3.show()
             }else
@@ -252,13 +253,14 @@ if(!isset($_GET['tpl']))
                 pub3.hide()
             }
             console.log(st);
-            pub1.hide()
+           // pub1.hide()
             pub2.show();
 
 
         } else {
-            pub2.hide();
+
             pub1.show();
+            pub2.hide()
             console.log('Vers le haut');
             console.log(st);
         }
