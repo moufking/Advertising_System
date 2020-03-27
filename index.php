@@ -139,7 +139,7 @@ if(!isset($_GET['tpl']))
                       </div>
                               <?php if(!empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==2 ||$valeur_publicitaire ==2) { ?>
                               <div class="col-lg-5">
-                              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                              <div class="alert alert-primary alert-dismissible fade show" role="alert" id="pub4">
                                   <h4 class="alert-heading">Annonce publicitaire 3!</h4>
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
@@ -225,6 +225,7 @@ if(!isset($_GET['tpl']))
     var pub1 = $('#list-example');
     var pub2 = $('#pub1');
     var pub3 = $('#pub3');
+    var pub4 = $('#pub4');
 
     var lastScrollOffset = $(window).scrollTop();
     var vwindow = $(window);
@@ -235,13 +236,20 @@ if(!isset($_GET['tpl']))
         var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
         if (st > lastScrollTop){
             console.log('Vers le bas');
+            if(st>117 && st<980)
+            {
+                pub4.show()
+            }else
+            {
+                pub4.hide()
+            }
             console.log(st);
             pub1.hide()
             pub2.show();
 
 
         } else {
-            !pub2.show();
+            pub2.hide();
             pub1.show();
             console.log('Vers le haut');
             console.log(st);
