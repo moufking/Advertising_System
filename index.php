@@ -188,11 +188,7 @@ if (isset($_GET['titre'])) {
           <div class="card my-4">
             <h5 class="card-header">More Like this</h5>
             <div class="card-group">
-              <?php include('template_little_blog.php');
-              echo  $tab_side[$aleatoire];
-              echo $tab_side[$aleatoire + 1 > 9 ? $aleatoire - 1 :  $aleatoire + 1];
-              echo $tab_side[$aleatoire + 2 > 9 ? $aleatoire - 2 : $aleatoire + 2];
-              ?>
+              <?php include('template_little_blog.php'); ?>
             </div>
           </div>
           <div class="card my-4 ">
@@ -237,6 +233,21 @@ if (isset($_GET['titre'])) {
     <script src="js/app.js"></script>
 
 </body>
-<?php ?>
 
 </html>
+
+<?php
+
+if (!isset($_SESSION['history'])) {
+  $_SESSION['history'] = [];
+}
+
+$_SESSION['history'][] = [
+  'tpl' => $valeur_publicitaire,
+  'title' => $valeur,
+  'posts' => [$morePost1, $morePost2, $morePost3],
+];
+
+var_dump($_SESSION['history']);
+
+?>
