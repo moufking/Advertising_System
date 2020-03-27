@@ -127,3 +127,4 @@ echo $tab_side[$morePost3];
 // $_SESSION['more_posts'][$morePost1] += 1;
 // $_SESSION['more_posts'][$morePost2] += 1;
 // $_SESSION['more_posts'][$morePost3] += 1;
+

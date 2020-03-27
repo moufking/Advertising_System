@@ -248,6 +248,61 @@ $_SESSION['history'][] = [
   'posts' => [$morePost1, $morePost2, $morePost3],
 ];
 
-var_dump($_SESSION['history']);
+// var_dump($_SESSION['history']);
+?>
+<pre>
+  <?php die(var_dump(getStats())); ?>
+</pre>
+
+<?php
+
+function getStats()
+{
+  $more_posts = [
+    0 => 0,
+    1 => 0,
+    2 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  ];
+
+  $tiltes = [
+    0 => 0,
+    1 => 0,
+    2 => 0,
+    3 => 0,
+    4 => 0,
+  ];
+
+  $tpls = [
+    0 => 0,
+    1 => 0,
+    2 => 0,
+  ];
+
+  foreach ($_SESSION['history'] as $history) {
+    $tpls[$history['tpl']] += 1;
+    $tiltes[$history['tiltes']] += 1;
+    $more_posts[$history['posts'][0]] += 1;
+    $more_posts[$history['posts'][1]] += 1;
+    $more_posts[$history['posts'][2]] += 1;
+  }
+
+  asort($more_posts);
+  $arr = array_reverse($more_posts);
+  $top_posts = array_slice($arr, 0, 3);
+  var_dump($more_posts);
+
+  max($tpls);
+  max($tiltes);
+  max($more_posts);
+  
+  return [max($tpls), max($tiltes), $top_posts];
+}
 
 ?>
