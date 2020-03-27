@@ -100,13 +100,14 @@ if(!isset($_GET['tpl']))
             <?php
                 if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==0 || $valeur_publicitaire ==0) {?>
             <div class="alert alert-primary alert-dismissible fade show" role="alert" id="list-example">
-                <h4 class="alert-heading">Annonce publicitaire 1!</h4>
+              <!--  <h4 class="alert-heading">Annonce publicitaire 1!</h4>-->
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-                <hr>
-                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                <h4 align="center">
+                    <img align="center" src="pub.jpeg" width="100%" height="210px">
+
+                </h4>
             </div>
 
             <?php } ?>
@@ -155,14 +156,18 @@ if(!isset($_GET['tpl']))
           </div>
           <div class="card my-4 ">
               <?php if(!empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==0 || $valeur_publicitaire ==0) { ?>
-              <div class="alert alert-primary alert-dismissible fade show " role="alert">
-                  <h4 class="alert-heading">Annonce publicitaire 1!</h4>
+              <div class="alert alert-primary alert-dismissible fade show " role="alert" id="pub1">
+                 <!-- <h4 class="alert-heading">Annonce publicitaire 1!</h4> -->
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
+                  <img align="center" src="publ.jpeg" width="100%" height="210px">
+
+                  <!--
                   <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
                   <hr>
                   <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                  -->
               </div>
               <?php } ?>
           </div>
@@ -209,6 +214,42 @@ if(!isset($_GET['tpl']))
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Stockage des différents éléments dans les variables
+    var pub1 = $('#list-example');
+    var pub2 = $('#pub1');
+    var lastScrollOffset = $(window).scrollTop();
+    var vwindow = $(window);
+
+
+
+    // Déclanche un évènement scroll
+    vwindow.trigger( 'scroll' );
+    vwindow.scroll(function(event){
+        // Valeur de défilement lors du chargement de la page
+        windowScroll = vwindow.scrollTop();
+        console.log(lastScrollOffset)
+        console.log(windowScroll)
+        if ( windowScroll > lastScrollOffset ){
+            pub2.show();
+            pub1.hide();
+            stop()
+
+
+            //console.log(windowScroll > lastScrollOffset);
+            //console.log(vwindow.scrollTop());
+
+        }else{
+            //console.log(' pas cacher');
+            pub1.show();
+            pub2.hide();
+           // console.log(vwindow.scrollTop());
+        }
+        // Mise à jour variables
+        lastScrollOffset = windowScroll;
+    });
+</script>
 
 </body>
 <?php ?>
