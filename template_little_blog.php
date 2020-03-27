@@ -1,5 +1,7 @@
 <?php
+    include_once("function.php");//connexion à la base de donnée
 
+    $compte = [0,0,0,0,0,0,0,0,0,0];
     $tab_side= [
         '<div class="card">
                       <img class="card-img-top" src="img/image.png" alt="Card image cap">
@@ -93,3 +95,29 @@
     do {
         $aleatoire= rand(0,9);
     }while($_SESSION['valeur_subtitle'] == $aleatoire);
+
+    function comptage($id_article)
+    {
+        $count= 0;
+        $bdd = db_connect();
+        $count++ ;
+        $req2 =$bdd->prepare("SELECT  * FROM historique WHERE id_article=?");//
+        $req2 ->execute(array($id_article));
+        $quete= $req2->fetch(PDO::FETCH_OBJ);
+        if(count($quete)!=0)
+        {
+            While($quete)
+            {
+                $req = $bdd->prepare('UPDATE historique set nombre=? WHERE  id_article = ?');
+                $total = $quete->nombre + $count;
+                $req->execute(array($total,$id_article));
+            }
+        }else {
+            $ajoutbonus = $bdd->prepare('INSERT INTO historique(id_article,nombre) VALUES(?,?)');
+            $ajoutbonus->execute(array($id_article,$count));
+        }
+
+
+
+
+    }

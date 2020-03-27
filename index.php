@@ -55,34 +55,39 @@ if(!isset($_GET['tpl']))
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-white py-1" id="navbar">
+          <div class="container position-relative">
+              <a class="navbar-brand" href="#">
+                  <h1 class="font-weight-bold text-pink my-0">Blog.</h1>
+              </a>
 
-  <!-- Page Content -->
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                          <a class="nav-link d-flex flex-column" href="index.html">
+                              <h5 class="m-0">New</h5>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link d-flex flex-column" href="index.html">
+                              <h5 class="m-0">Popular</h5>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link d-flex flex-column btn btn-primary rounded-pill px-4 mx-2 mx-sm-4" href="index.html">
+                              <h5 class="m-0">Subscribe</h5>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </header>  <!-- Page Content -->
   <div class="container">
 
     <div class="row">
@@ -105,13 +110,35 @@ if(!isset($_GET['tpl']))
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 align="center">
-                    <img align="center" src="pub.jpeg" width="100%" height="210px">
+                    <img align="center" src="pub.jpeg" width="100%" height="90px">
 
                 </h4>
             </div>
 
             <?php } ?>
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <div class="style_bg_img" style="background-image: url('img/banière.jpg');">
+                <div class="style_bg_img_bloc pt-5">
+                    <div class="container pt-5 mt-5">
+                        <div class="pt-5 mt-5">
+                            <div class="py-5 mt-5 text-white animated fadeInDown slow">
+                                <button class="btn btn-primary rounded-pill px-4">Personnel Personnel</button>
+                                <h1 class="my-4 font-weight-bold display-2">5 Ways Nature can make your life better</h1>
+                                <div class="my-4">
+                                    <div class="media">
+                                        <a href="#">
+                                            <img src="img/compta1.jpg" width="60" height="60" class="mr-3 rounded-circle border" alt="...">
+                                        </a>
+                                        <div class="media-body text-left">
+                                            <h4 class="mt-0 mb-1 text-white">Nom Prénom</h4>
+                                            <small class="text-white-50">Domaines de compétences</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                   <div class="card-body">
                     <h2 class="card-title"><?= $tab[$valeur] ?></h2>
@@ -159,25 +186,24 @@ if(!isset($_GET['tpl']))
 
 
         <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-
-              <a class="page-link" href="/startbootstrap-blog-home-gh-pages?tpl=<?= $ancien_valeur_publicitaire?>&titre=<?=$ancien_valeur ?>">&larr; Précédent</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="/startbootstrap-blog-home-gh-pages/">Suivant &rarr;</a>
-          </li>
-        </ul>
+            <div class="mt-5 text-center">
+                <a class="btn btn-secondary rounded-pill px-4 mx-2 mx-sm-4" href="/startbootstrap-blog-home-gh-pages?tpl=<?= $ancien_valeur_publicitaire?>&titre=<?=$ancien_valeur ?>">&larr; Précédent</a>
+                <a class="btn btn-secondary rounded-pill px-4 mx-2 mx-sm-4" href="/startbootstrap-blog-home-gh-pages/">Suivant &rarr;</a>
+            </div>
 
 
           <div class="card my-4">
               <h5 class="card-header">More Like this</h5>
               <div class="card-group">
                  <?php include('template_little_blog.php');
-                  echo  $tab_side[$aleatoire];
-                  echo $tab_side[$aleatoire+1>9 ? $aleatoire-1 :  $aleatoire+1 ];
-                   echo $tab_side[$aleatoire+2>9 ? $aleatoire-2 : $aleatoire+2];
+
+                  echo  $tab_side[$aleatoire]; $compte[$aleatoire]+=1;
+                  echo $tab_side[$aleatoire+1>9 ? $aleatoire-1 :  $aleatoire+1 ]; $compte[$aleatoire+1>9 ? $aleatoire-1 :  $aleatoire+1 ]+=1;
+                   echo $tab_side[$aleatoire+2>9 ? $aleatoire-2 : $aleatoire+2]; $compte[$aleatoire+2>9 ? $aleatoire-2 : $aleatoire+2]+=1;
+
                   ?>
+
+
               </div>
           </div>
           <div class="card my-4 ">
@@ -195,7 +221,9 @@ if(!isset($_GET['tpl']))
                   <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
                   -->
               </div>
-              <?php } ?>
+              <?php }
+                var_dump($compte);
+              ?>
           </div>
       </div>
 
