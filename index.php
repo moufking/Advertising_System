@@ -285,7 +285,9 @@ function getStats()
     2 => 0,
   ];
 
-  foreach ($_SESSION['history'] as $history) {
+  $histories = array_slice($_SESSION['history'], 0, 19);
+
+  foreach ($histories as $history) {
     $tpls[$history['tpl']] += 1;
     $tiltes[$history['tiltes']] += 1;
     $more_posts[$history['posts'][0]] += 1;
@@ -301,7 +303,7 @@ function getStats()
   max($tpls);
   max($tiltes);
   max($more_posts);
-  
+
   return [max($tpls), max($tiltes), $top_posts];
 }
 
