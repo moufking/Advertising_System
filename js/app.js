@@ -51,8 +51,7 @@ if (tpl === 0) {
 //   false
 // );
 
-let oldDirection = 1;
-let oldDirection2 = 1;
+let prevIsScrollUp = false;
 function setupTemplate0() {
   window.addEventListener(
     "scroll",
@@ -80,28 +79,15 @@ function setupTemplate0() {
       }
 
       var st = window.pageYOffset || document.documentElement.scrollTop;
-      console.log(st, lastScrollTop);
       var scrollUp = st < lastScrollTop;
-
-      if (scrollUp) {
-        oldDirection2 = oldDirection;
-        oldDirection = -1;
-      } else {
-        oldDirection2 = oldDirection2;
-        oldDirection = 1;
-      }
-
-      if (!scrollUp && oldDirection2 == -1) {
-        oldDirection = -1;
-        oldDirection2 = -1;
-        showBottomAd();
-      } else if (scrollUp) {
-        oldDirection = 1;
-        oldDirection2 = 1;
-        showTopAd();
-      }
-      
       lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+
+      if (scrollUp && prevIsScrollUp) {
+        showTopAd();
+      } else if (!scrollUp && !prevIsScrollUp) {
+        showBottomAd();
+      }
+      prevIsScrollUp = scrollUp;
     },
     false
   );
