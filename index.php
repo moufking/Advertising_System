@@ -127,7 +127,7 @@ if(!isset($_GET['tpl']))
                       </div>
                       <?php } ?>
                       <div class="row">
-                          <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1) { ?>
+                          <?php if( !empty($valeur_publicitaire_session) && $valeur_publicitaire_session ==1 ||$valeur_publicitaire ==1 || $valeur_publicitaire ==0) { ?>
                           <div class="col-lg-12">
                               <?php }else { ?>
                           <div class="col-lg-7">
@@ -224,32 +224,32 @@ if(!isset($_GET['tpl']))
     // Stockage des différents éléments dans les variables
     var pub1 = $('#list-example');
     var pub2 = $('#pub1');
+    var pub3 = $('#pub3');
+
     var lastScrollOffset = $(window).scrollTop();
     var vwindow = $(window);
 
-
-
-    // Déclanche un évènement scroll
-    vwindow.trigger( 'scroll' );
-    vwindow.scroll(function(event){
-        // Valeur de défilement lors du chargement de la page
-        windowScroll = vwindow.scrollTop();
-        console.log(lastScrollOffset)
-        console.log(windowScroll)
-        if ( windowScroll > lastScrollOffset ){
+    var lastScrollTop = 0;
+    // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+    window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
+        var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+        if (st > lastScrollTop){
+            console.log('Vers le bas');
+            console.log(st);
+            pub1.hide()
             pub2.show();
-            pub1.hide();
-            stop()
 
-        }else{
-            //console.log(' pas cacher');
+
+        } else {
+            !pub2.show();
             pub1.show();
-            pub2.hide();
-           // console.log(vwindow.scrollTop());
+            console.log('Vers le haut');
+            console.log(st);
         }
-        // Mise à jour variables
-        lastScrollOffset = windowScroll;
-    });
+        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    }, false);
+
+
 </script>
 
 </body>
