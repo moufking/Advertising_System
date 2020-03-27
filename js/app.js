@@ -1,11 +1,8 @@
-var tpl = 1;
-console.log(tpl);
 var pub1 = $("#list-example");
 var pub2 = $("#pub1");
 var pub3 = $("#pub3");
 var pub4 = $("#pub4");
 var tpl = parseInt($("#main").attr("data-tpl"), 10);
-console.log({ tpl });
 
 var lastScrollOffset = $(window).scrollTop();
 var lastScrollTop = 0;
@@ -18,52 +15,18 @@ if (tpl === 0) {
   setupTemplate2();
 }
 
-// element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
-// window.addEventListener(
-//   "scroll",
-//   function() {
-//     // or window.addEventListener("scroll"....
-//     var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-//     if (st > lastScrollTop) {
-//       console.log("Vers le bas");
-//       if (st >= 0 && st < 980) {
-//         pub4.show();
-//       } else {
-//         pub4.hide();
-//       }
-
-//       if (st >= 0 && st < 624) {
-//         pub3.show();
-//       } else {
-//         pub3.hide();
-//       }
-//       console.log(st);
-//       // pub1.hide()
-//       pub2.show();
-//     } else {
-//       pub1.show();
-//       pub2.hide();
-//       console.log("Vers le haut");
-//       console.log(st);
-//     }
-//     lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-//   },
-//   false
-// );
-
-let prevIsScrollUp = false;
 function setupTemplate0() {
+  let prevIsScrollUp = false;
+
   window.addEventListener(
     "scroll",
     function() {
       function showTopAd() {
-        console.log("Up");
         pub1.show();
         pub2.hide();
       }
 
       function showBottomAd() {
-        console.log("Down");
         pub1.hide();
         pub2.show();
       }

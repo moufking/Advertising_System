@@ -17,16 +17,14 @@ $ancien_valeur = $_SESSION['valeur'];
 
 
 if (!isset($_GET['tpl'])) {
-  $valeur_publicitaire = 0; // rand(0, 2);
-  $_SESSION['valeur_publicitaire'] = $valeur_publicitaire;
-  // while (true) {
-  //   $valeur_publicitaire = rand(0, 2);
+  while (true) {
+    $valeur_publicitaire = rand(0, 2);
 
-  //   if ($_SESSION['valeur_publicitaire'] != $valeur_publicitaire) {
-  //     $_SESSION['valeur_publicitaire'] = $valeur_publicitaire;
-  //     break;
-  //   }
-  // };
+    if ($_SESSION['valeur_publicitaire'] != $valeur_publicitaire) {
+      $_SESSION['valeur_publicitaire'] = $valeur_publicitaire;
+      break;
+    }
+  };
 }
 
 if (!isset($_GET['titre'])) {
