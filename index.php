@@ -259,52 +259,56 @@ $_SESSION['history'][] = [
 function getStats()
 {
   $more_posts = [
-    0 => 0,
-    1 => 0,
-    2 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
+    't0' => 0,
+    't1' => 0,
+    't2' => 0,
+    't3' => 0,
+    't4' => 0,
+    't5' => 0,
+    't6' => 0,
+    't7' => 0,
+    't8' => 0,
+    't9' => 0,
   ];
 
-  $tiltes = [
-    0 => 0,
-    1 => 0,
-    2 => 0,
-    3 => 0,
-    4 => 0,
+  $titles = [
+    't0' => 0,
+    't1' => 0,
+    't2' => 0,
+    't3' => 0,
+    't4' => 0,
   ];
 
   $tpls = [
-    0 => 0,
-    1 => 0,
-    2 => 0,
+    't0' => 0,
+    't1' => 0,
+    't2' => 0,
   ];
 
-  $histories = array_slice($_SESSION['history'], 0, 19);
+  // $histories = array_slice($_SESSION['history'], -1, 20);
+  $histories = $_SESSION['history'];
 
   foreach ($histories as $history) {
-    $tpls[$history['tpl']] += 1;
-    $tiltes[$history['tiltes']] += 1;
-    $more_posts[$history['posts'][0]] += 1;
-    $more_posts[$history['posts'][1]] += 1;
-    $more_posts[$history['posts'][2]] += 1;
+    $tpls['t' . $history['tpl']] += 1;
+    $titles['t' . $history['title']] += 1;
+    $more_posts['t' . $history['posts'][0]] += 1;
+    $more_posts['t' . $history['posts'][1]] += 1;
+    $more_posts['t' . $history['posts'][2]] += 1;
   }
 
   asort($more_posts);
-  $arr = array_reverse($more_posts);
-  $top_posts = array_slice($arr, 0, 3);
-  var_dump($more_posts);
+  $top_posts = array_reverse($more_posts);
+  $top_posts = array_slice(array_keys($top_posts), 0, 3);
 
-  max($tpls);
-  max($tiltes);
-  max($more_posts);
+  asort($titles);
+  $title = array_reverse($titles);
+  $title = array_slice(array_keys($title), 0, 1)[0];
 
-  return [max($tpls), max($tiltes), $top_posts];
+  asort($tpls);
+  $tpl = array_reverse($tpls);
+  $tpl = array_slice(array_keys($tpl), 0, 1)[0];
+
+  return [$title, $tpl, $top_posts];
 }
 
 ?>
