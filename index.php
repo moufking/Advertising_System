@@ -243,6 +243,14 @@ if(!isset($_GET['tpl']))
             {
                 pub4.hide()
             }
+
+            if(st>142 && st<661)
+            {
+                pub3.show()
+            }else
+            {
+                pub3.hide()
+            }
             console.log(st);
             pub1.hide()
             pub2.show();
