@@ -136,10 +136,10 @@ if(!isset($_GET['tpl']))
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
 
-              <a class="page-link" href="/startbootstrap-blog-home-gh-pages?tpl=<?= $ancien_valeur_publicitaire?>&titre=<?=$ancien_valeur ?>">&larr; Older</a>
+              <a class="page-link" href="/startbootstrap-blog-home-gh-pages?tpl=<?= $ancien_valeur_publicitaire?>&titre=<?=$ancien_valeur ?>">&larr; Précédent</a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="/startbootstrap-blog-home-gh-pages/">Newer &rarr;</a>
+            <a class="page-link" href="/startbootstrap-blog-home-gh-pages/">Suivant &rarr;</a>
           </li>
         </ul>
 
