@@ -248,67 +248,52 @@ $_SESSION['history'][] = [
   'posts' => [$morePost1, $morePost2, $morePost3],
 ];
 
-// var_dump($_SESSION['history']);
+if (count($_SESSION['history']) > 20) {
+  $_SESSION['history'] = array_slice($_SESSION['history'], -20, 20);
+}
+
 ?>
 <pre>
-  <?php die(var_dump(getStats())); ?>
+  <?php die(var_dump(getStats($_SESSION['history']))); ?>
 </pre>
 
 <?php
 
-function getStats()
+function getStats($histories)
 {
   $more_posts = [
-    't0' => 0,
-    't1' => 0,
-    't2' => 0,
-    't3' => 0,
-    't4' => 0,
-    't5' => 0,
-    't6' => 0,
-    't7' => 0,
-    't8' => 0,
-    't9' => 0,
+    '_0' => 0,
+    '_1' => 0,
+    '_2' => 0,
+    '_3' => 0,
+    '_4' => 0,
+    '_5' => 0,
+    '_6' => 0,
+    '_7' => 0,
+    '_8' => 0,
+    '_9' => 0,
   ];
 
-  $titles = [
-    't0' => 0,
-    't1' => 0,
-    't2' => 0,
-    't3' => 0,
-    't4' => 0,
-  ];
-
-  $tpls = [
-    't0' => 0,
-    't1' => 0,
-    't2' => 0,
-  ];
-
-  // $histories = array_slice($_SESSION['history'], -1, 20);
-  $histories = $_SESSION['history'];
+  $combs = [];
+  // $histories = $_SESSION['history'];
+  // die(var_dump($histories));
 
   foreach ($histories as $history) {
-    $tpls['t' . $history['tpl']] += 1;
-    $titles['t' . $history['title']] += 1;
-    $more_posts['t' . $history['posts'][0]] += 1;
-    $more_posts['t' . $history['posts'][1]] += 1;
-    $more_posts['t' . $history['posts'][2]] += 1;
+    $key = 'tpl_' . $history['tpl'] . '_title_' . $history['title'];
+    isset($combs[$key]) ? $combs[$key] += 1 : $combs[$key] = 0;
+
+    $more_posts['_' . $history['posts'][0]] += 1;
+    $more_posts['_' . $history['posts'][1]] += 1;
+    $more_posts['_' . $history['posts'][2]] += 1;
   }
 
   asort($more_posts);
-  $top_posts = array_reverse($more_posts);
-  $top_posts = array_slice(array_keys($top_posts), 0, 3);
+  $top_post = array_slice(array_keys($more_posts), -1, 1)[0];
 
-  asort($titles);
-  $title = array_reverse($titles);
-  $title = array_slice(array_keys($title), 0, 1)[0];
+  asort($combs);
+  $comb = array_slice(array_keys($combs), -1, 1)[0];
 
-  asort($tpls);
-  $tpl = array_reverse($tpls);
-  $tpl = array_slice(array_keys($tpl), 0, 1)[0];
-
-  return [$title, $tpl, $top_posts];
+  return [$comb, $top_post];
 }
 
 ?>
